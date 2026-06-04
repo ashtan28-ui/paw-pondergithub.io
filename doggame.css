@@ -1,0 +1,197 @@
+#start-page{
+width: 1430px;
+height:760px;
+position: relative;
+visibility: visible;
+}
+
+.container{
+    position: absolute;
+    display: inline-block;
+}
+
+#start-button{
+    position: absolute;
+    top: 250px;
+    left: 500px;
+    z-index: 2;
+    width: 450px;
+    height: 150px;
+    cursor: pointer;
+    visibility: visible;
+}
+
+#choose-dog{
+    width: 1430px;
+    height:760px;
+    left:60px;
+    top:10px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.container2{
+     position: relative;
+     display: inline-block;
+     visibility: visible;
+
+}
+
+#dog-button-one{
+    width:250px;
+    height:260px;
+    top:310px;
+    left: 280px;
+    position: absolute; 
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#dog-button-two{
+    width:220px;
+    height:250px;
+    top:315px;
+    left:600px;
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#dog-button-three{
+    width:220px;
+    height:250px;
+    top:310px;
+    left:910px;
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+#game-page{
+    width: 1450px;
+    height: 720px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+#player-dog {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 400px;
+    left: 100px;
+    z-index: 3;
+    visibility: hidden;
+}
+
+.dog-food {
+    position: absolute; 
+    width: 70px;   
+    height: 70px; 
+    z-index: 2;
+    visibility: hidden;
+}
+
+#food1 { 
+    top: 250px;
+    left: 450px;  
+}
+
+#food2 { 
+    top: 550px;
+    left: 850px;
+}
+
+#food3 { 
+    top: 180px;
+    left: 1150px;         
+}
+
+#food4 { 
+    top: 300px;
+    left: 1150px; 
+
+}
+
+#food5{
+    top: 700px;
+    left:200px;
+}
+
+#food6{
+    top: 400px;
+    left:700px;
+}
+
+#food7{
+    top: 500px;
+    left:1000px;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1450px;
+    height: 780px;
+    background-color: rgba(237, 197, 119, 0.89);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    visibility: hidden;
+}
+
+.score-tracker {
+    position: absolute;
+    top: 20px;
+    left: 650px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    border: 2px solid #5c3a21;
+    color: #5c3a21;
+    visibility: hidden;
+}
+
+.timer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    background-color: rgb(246, 225, 146);
+    border-radius: 10px;
+    color: #5c3a21;
+    visibility: visible;
+    z-index: 100;
+}
+
+.end-page {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+}
+
+.end-button {
+    visibility: hidden;
+    position: fixed;
+    top: 210px;
+    left: 480px;
+    z-index:3000;
+    width: 480px;
+    height: 230px;
+    cursor: pointer;
+}

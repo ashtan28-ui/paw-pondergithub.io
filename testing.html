@@ -1,0 +1,299 @@
+<html>
+<head>
+    <title>Puppy Game</title> 
+    <link rel="stylesheet" href="doggame.css">
+</head>
+<body>
+
+<script>
+    var dogchoice = 0;
+    var activeFoodNumber = 0; 
+    var gamePaused = false;
+    var score = 0;
+    var timeLeft = 60;
+    var timerInterval;
+
+    let x = 100;
+    let y = 400; 
+    const speed = 3; 
+
+    const keys = {
+      w: false,
+      a: false,
+      s: false,
+      d: false
+    };
+
+    function startGame(){
+        document.getElementById('start-button').style.visibility = 'hidden';
+        document.getElementById('start-page').style.visibility = 'hidden';
+        document.getElementById('choose-dog').style.visibility = 'visible';
+        document.getElementById('dog-button-one').style.visibility = 'visible';
+        document.getElementById('dog-button-two').style.visibility = 'visible';
+        document.getElementById('dog-button-three').style.visibility = 'visible';
+    }
+
+    function pickDog() {
+        var dogImg = document.getElementById('player-dog');
+        
+        if (dogchoice == 1) { dogImg.src = "images/dogplayer1.jpg"; }
+        else if (dogchoice == 2) { dogImg.src = "images/dogplayer2.jpg"; }
+        else { dogImg.src = "images/dogplayer3.jpg"; }
+
+
+        document.getElementById('choose-dog').style.visibility = 'hidden';
+        document.getElementById('dog-button-one').style.visibility = 'hidden';
+        document.getElementById('dog-button-two').style.visibility = 'hidden';
+        document.getElementById('dog-button-three').style.visibility = 'hidden';
+
+        document.getElementById('game-page').style.visibility = 'visible';
+        document.getElementById('player-dog').style.visibility = 'visible';
+        document.getElementById('score-board').style.visibility = 'visible';
+        document.getElementById('timer').style.visibility = 'visible';
+        startTimer();
+
+        var allFoods = document.querySelectorAll('.dog-food');
+        allFoods.forEach(function(food) {
+            food.style.visibility = 'visible';
+        });
+
+        x = 100;
+        y = 400;
+        dogImg.style.left = x + 'px';
+        dogImg.style.top = y + 'px';
+
+        update();
+    }
+
+    window.addEventListener('keydown', (e) => {
+        var keyName = e.key.toLowerCase();
+        if (["w", "a", "s", "d", " "].includes(keyName)) {
+            e.preventDefault();
+        }
+        if (keys.hasOwnProperty(keyName)) { keys[keyName] = true; }
+    });
+
+    window.addEventListener('keyup', (e) => {
+        var keyName = e.key.toLowerCase();
+        if (keys.hasOwnProperty(keyName)) { keys[keyName] = false; }
+    });
+
+    function update() {
+      if (document.getElementById('game-page').style.visibility == 'visible' && !gamePaused) {
+          if (keys.w) y -= speed;
+          if (keys.s) y += speed;
+          if (keys.a) x -= speed; 
+          if (keys.d) x += speed;
+
+          var dog = document.getElementById('player-dog');
+          dog.style.top = y + 'px';
+          dog.style.left = x + 'px';
+
+          checkFoodCollision(1, 450, 250);
+          checkFoodCollision(2, 850, 550);
+          checkFoodCollision(3, 1150, 180);
+          checkFoodCollision(4, 1150, 300);
+          checkFoodCollision(5, 200, 700);
+          checkFoodCollision(6, 700, 400);
+          checkFoodCollision(7, 1000, 500);
+
+      }
+      requestAnimationFrame(update); 
+    }
+
+    function checkFoodCollision(foodNum, foodX, foodY) {
+        var foodElement = document.getElementById('food' + foodNum);
+        if (!foodElement || foodElement.style.visibility == 'hidden') { return; }
+
+        if (Math.abs(x - foodX) < 60 && Math.abs(y - foodY) < 60) {
+            foodElement.style.visibility = 'hidden';  
+            gamePaused = true;               
+            activeFoodNumber = foodNum;
+            showQuizBox(foodNum); 
+        }
+    }
+
+    function showQuizBox(foodNum){
+        if (foodNum == 1){
+            document.getElementById('modal-question').innerText = "Which of the following human foods is toxic and strictly forbidden for dogs?";
+            document.getElementById('opt1').innerText = "Carrots";
+            document.getElementById('opt2').innerText = "Grapes";
+            document.getElementById('opt3').innerText = "Plain Yogurt";
+            document.getElementById('opt4').innerText = "Apples";
+        }
+
+        else if(foodNum == 2){
+            document.getElementById('modal-question').innerText = "What do puppies love to chew on?";
+            document.getElementById('opt1').innerText = "Bones";
+            document.getElementById('opt2').innerText = "Apples";
+            document.getElementById('opt3').innerText = "Chocolate";
+            document.getElementById('opt4').innerText = "Chicken";
+        }
+        else if(foodNum == 3){
+            document.getElementById('modal-question').innerText = "True or False: Dogs can eat chocolate";
+            document.getElementById('opt1').innerText = "True";
+            document.getElementById('opt2').innerText = "False";
+            document.getElementById('opt3').innerText = ""; 
+            document.getElementById('opt4').innerText = "";
+        }
+        else if(foodNum == 4){
+            document.getElementById('modal-question').innerText = "What do dogs do primarily to cool down when they are hot?";
+            document.getElementById('opt1').innerText = "Sweat through their skin";
+            document.getElementById('opt2').innerText = "Pant";
+            document.getElementById('opt3').innerText = "Roll in the mud";
+            document.getElementById('opt4').innerText = "Drink large amounts of water";
+        }
+        
+        else if(foodNum == 5){
+            document.getElementById('modal-question').innerText = "What is a dog's most highly developed and powerful sense?";
+            document.getElementById('opt1').innerText = "Smell";
+            document.getElementById('opt2').innerText = "Sight";
+            document.getElementById('opt3').innerText = "Hearing";
+            document.getElementById('opt4').innerText = "Taste";
+        }
+
+        else if(foodNum == 6){
+            document.getElementById('modal-question').innerText = "What is a group of puppies born to the same mother at the same time called?";
+            document.getElementById('opt1').innerText = "A pack";
+            document.getElementById('opt2').innerText = "A litter";
+            document.getElementById('opt3').innerText = "A herd";
+            document.getElementById('opt4').innerText = "A flock";
+
+        }
+         else if(foodNum == 7){
+            document.getElementById('modal-question').innerText = " Which of the following is the fastest dog breed in the world?";
+            document.getElementById('opt1').innerText = "Dalmatian";
+            document.getElementById('opt2').innerText = "Greyhound";
+            document.getElementById('opt3').innerText = "Whippet";
+            document.getElementById('opt4').innerText = "Doberman Pinscher";
+         }
+
+        document.getElementById('quiz-modal').style.visibility = 'visible';
+        }
+
+    function submitAnswer(buttonClicked) {
+        var playerChoice = buttonClicked.innerText;
+        var isCorrect = false;
+
+        if (activeFoodNumber == 1 && playerChoice == "Grapes") { isCorrect = true; }
+        if (activeFoodNumber == 2 && playerChoice == "Bones") { isCorrect = true; }
+        if (activeFoodNumber == 3 && playerChoice == "False") { isCorrect = true; }
+        if (activeFoodNumber == 4 && playerChoice == "Pant") { isCorrect = true; }
+        if (activeFoodNumber == 5 && playerChoice == "Smell") { isCorrect = true; }
+        if (activeFoodNumber == 6 && playerChoice == "A litter") { isCorrect = true; }
+        if (activeFoodNumber == 7 && playerChoice == "Greyhound") { isCorrect = true; }
+
+        if (isCorrect == true) {
+            alert("Correct answer! Good puppy!");
+            score = score + 10;
+            document.getElementById('score-display').innerText = score;
+        } else {
+            alert("Incorrect answer! Try again later :(");
+        }
+
+        document.getElementById('quiz-modal').style.visibility = 'hidden';
+        gamePaused = false;
+    }
+   
+    function startTimer() {
+
+    timeLeft = 60;
+
+    document.getElementById("time-display").innerText = timeLeft;
+
+    timerInterval = setInterval(function() {
+
+        timeLeft--;
+
+        document.getElementById("time-display").innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timerInterval);
+
+            gamePaused = true;
+
+            alert("Time's up! Your final score is " + score);
+
+            document.getElementById('game-page').style.visibility = 'hidden';
+            document.getElementById('player-dog').style.visibility = 'hidden';
+            document.getElementById('score-board').style.visibility = 'hidden';
+            document.getElementById('timer').style.visibility = 'hidden';
+
+            document.querySelectorAll('.dog-food').forEach(function(food) {
+                food.style.visibility = 'hidden';
+            });
+
+            document.getElementById('quiz-modal').style.visibility = 'hidden';
+
+            document.getElementById('end-page').style.visibility = 'visible';
+            document.getElementById('end-button').style.visibility = 'visible';
+        }
+
+    }, 1000);
+}
+
+    function endGame() {
+        clearInterval(timerInterval);
+        document.getElementById('game-page').style.visibility = 'hidden';
+        document.getElementById('player-dog').style.visibility = 'hidden';
+        document.getElementById('score-board').style.visibility = 'hidden';
+        document.getElementById('timer').style.visibility = 'hidden';
+        document.getElementById('end-page').style.visibility = 'visible';
+
+        var allFoods = document.querySelectorAll('.dog-food');
+        allFoods.forEach(function(food) {
+            food.style.visibility = 'hidden';
+        });
+    }
+
+    function restartGame() {
+    location.reload();
+}
+</script>
+
+<div class="container">
+    <img src="images/start.jpg" id="start-page" alt="Start Image" class="startpage">
+    <img src="images/startbutton.jpg" id="start-button" alt="startbutton" class="start-button" onclick="startGame();">
+</div>
+
+<div class="container2">
+    <img src="images/choosedog.jpg" id="choose-dog" alt="choosedog" class="choose-dog">
+    <img src="images/dogbutton1.jpg" id="dog-button-one" alt="dogbuttonone" class="dog-button-one" onclick="dogchoice=1; pickDog();"> 
+    <img src="images/dogbutton2.jpg" id="dog-button-two" alt="dogbuttonetwo" class="dog-button-two" onclick="dogchoice=2; pickDog();">
+    <img src="images/dogbutton3.jpg" id="dog-button-three" alt="dogbuttonthree" class="dog-button-three" onclick="dogchoice=3; pickDog();">
+</div>
+
+<div class="container3">
+    <div id="score-board" class="score-tracker">Score: <span id="score-display">0</span></div>
+    <div id="timer" class="timer">Time Left: <span id="time-display">60</span></div>
+
+    <img src="images/gamepage.jpg" id="game-page" alt="gamepage" class="game-page">
+    <img src="images/dogbutton1.jpg" name="dogImage" id="player-dog" alt="playerdog" class="player-dog">
+    
+    <img src="images/apple.jpg" id="food1" class="dog-food" alt="apple">
+    <img src="images/banana.jpg" id="food2" class="dog-food" alt="banana">
+    <img src="images/dogfood.jpg" id="food3" class="dog-food" alt="dogfood">
+    <img src="images/pumpkin.jpg" id="food4" class="dog-food" alt="pumpkin">
+    <img src="images/carrot.jpg" id="food5" class="dog-food" alt="carrot">
+    <img src="images/oats.jpg" id="food6" class="dog-food" alt="oats">
+    <img src="images/egg.jpg" id="food7" class="dog-food" alt="egg">
+</div>
+
+<div class="container4">
+    <img src="images/endscreen.jpg" id="end-page" alt="endpage" class="end-page">
+    <img src="images/endbutton.jpg" id="end-button" alt="endbutton" class="end-button" onclick="restartGame();">
+</div>
+<div id="quiz-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="modal-question">Question Text</h2>
+        <div class="options-container">
+            <button id="opt1" class="quiz-btn" onclick="submitAnswer(this)"></button>
+            <button id="opt2" class="quiz-btn" onclick="submitAnswer(this)"></button>
+            <button id="opt3" class="quiz-btn" onclick="submitAnswer(this)"></button>
+            <button id="opt4" class="quiz-btn" onclick="submitAnswer(this)"></button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
