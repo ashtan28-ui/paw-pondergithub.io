@@ -36,9 +36,9 @@
     function pickDog() {
         var dogImg = document.getElementById('player-dog');
         
-        if (dogchoice == 1) { dogImg.src = "images/dogplayer1.jpg"; }
-        else if (dogchoice == 2) { dogImg.src = "images/dogplayer2.jpg"; }
-        else { dogImg.src = "images/dogplayer3.jpg"; }
+        if (dogchoice == 1) { dogImg.src = "dogimages/dogplayer1.jpg"; }
+        else if (dogchoice == 2) { dogImg.src = "dogimages/dogplayer2.jpg"; }
+        else { dogImg.src = "dogimages/dogplayer3.jpg"; }
 
 
         document.getElementById('choose-dog').style.visibility = 'hidden';
@@ -253,36 +253,36 @@
 </script>
 
 <div class="container">
-    <img src="images/start.jpg" id="start-page" alt="Start Image" class="startpage">
-    <img src="images/startbutton.jpg" id="start-button" alt="startbutton" class="start-button" onclick="startGame();">
+    <img src="dogimages/start.jpg" id="start-page" alt="Start Image" class="startpage">
+    <img src="dogimages/startbutton.jpg" id="start-button" alt="startbutton" class="start-button" onclick="startGame();">
 </div>
 
 <div class="container2">
-    <img src="images/choosedog.jpg" id="choose-dog" alt="choosedog" class="choose-dog">
-    <img src="images/dogbutton1.jpg" id="dog-button-one" alt="dogbuttonone" class="dog-button-one" onclick="dogchoice=1; pickDog();"> 
-    <img src="images/dogbutton2.jpg" id="dog-button-two" alt="dogbuttonetwo" class="dog-button-two" onclick="dogchoice=2; pickDog();">
-    <img src="images/dogbutton3.jpg" id="dog-button-three" alt="dogbuttonthree" class="dog-button-three" onclick="dogchoice=3; pickDog();">
+    <img src="dogimages/choosedog.jpg" id="choose-dog" alt="choosedog" class="choose-dog">
+    <img src="dogimages/dogbutton1.jpg" id="dog-button-one" alt="dogbuttonone" class="dog-button-one" onclick="dogchoice=1; pickDog();"> 
+    <img src="dogimages/dogbutton2.jpg" id="dog-button-two" alt="dogbuttonetwo" class="dog-button-two" onclick="dogchoice=2; pickDog();">
+    <img src="dogimages/dogbutton3.jpg" id="dog-button-three" alt="dogbuttonthree" class="dog-button-three" onclick="dogchoice=3; pickDog();">
 </div>
 
 <div class="container3">
     <div id="score-board" class="score-tracker">Score: <span id="score-display">0</span></div>
     <div id="timer" class="timer">Time Left: <span id="time-display">60</span></div>
 
-    <img src="images/gamepage.jpg" id="game-page" alt="gamepage" class="game-page">
-    <img src="images/dogbutton1.jpg" name="dogImage" id="player-dog" alt="playerdog" class="player-dog">
+    <img src="dogimages/gamepage.jpg" id="game-page" alt="gamepage" class="game-page">
+    <img src="dogimages/dogbutton1.jpg" name="dogImage" id="player-dog" alt="playerdog" class="player-dog">
     
-    <img src="images/apple.jpg" id="food1" class="dog-food" alt="apple">
-    <img src="images/banana.jpg" id="food2" class="dog-food" alt="banana">
-    <img src="images/dogfood.jpg" id="food3" class="dog-food" alt="dogfood">
-    <img src="images/pumpkin.jpg" id="food4" class="dog-food" alt="pumpkin">
-    <img src="images/carrot.jpg" id="food5" class="dog-food" alt="carrot">
-    <img src="images/oats.jpg" id="food6" class="dog-food" alt="oats">
-    <img src="images/egg.jpg" id="food7" class="dog-food" alt="egg">
+    <img src="dogimages/apple.jpg" id="food1" class="dog-food" alt="apple">
+    <img src="dogimages/banana.jpg" id="food2" class="dog-food" alt="banana">
+    <img src="dogimages/dogfood.jpg" id="food3" class="dog-food" alt="dogfood">
+    <img src="dogimages/pumpkin.jpg" id="food4" class="dog-food" alt="pumpkin">
+    <img src="dogimages/carrot.jpg" id="food5" class="dog-food" alt="carrot">
+    <img src="dogimages/oats.jpg" id="food6" class="dog-food" alt="oats">
+    <img src="dogimages/egg.jpg" id="food7" class="dog-food" alt="egg">
 </div>
 
 <div class="container4">
-    <img src="images/endscreen.jpg" id="end-page" alt="endpage" class="end-page">
-    <img src="images/endbutton.jpg" id="end-button" alt="endbutton" class="end-button" onclick="restartGame();">
+    <img src="dogimages/endscreen.jpg" id="end-page" alt="endpage" class="end-page">
+    <img src="dogimages/endbutton.jpg" id="end-button" alt="endbutton" class="end-button" onclick="restartGame();">
 </div>
 <div id="quiz-modal" class="modal-overlay">
     <div class="modal-content">
